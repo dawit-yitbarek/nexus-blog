@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Search, Command, Loader } from "lucide-react";
 import { searchSimilarPosts } from "@/lib/embedding";
 import { type BlogPost } from "@/lib/blog-data";
-import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Sparkles } from "lucide-react";
 
@@ -54,10 +53,7 @@ export function HeroSection({ onSearchResults }: HeroSectionProps) {
     <section className="relative overflow-hidden border-b border-border/40 py-18 lg:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
@@ -71,13 +67,10 @@ export function HeroSection({ onSearchResults }: HeroSectionProps) {
             Discover thoughtful articles about AI, modern software, and the
             technologies shaping tomorrow — explained in a clear, practical way.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
+        <div
           id="search"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-10 max-w-2xl"
         >
           {searchError && (
@@ -122,7 +115,7 @@ export function HeroSection({ onSearchResults }: HeroSectionProps) {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

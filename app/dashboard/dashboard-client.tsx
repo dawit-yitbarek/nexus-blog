@@ -112,7 +112,7 @@ export default function DashboardClient({
           .update({
             title: editorTitle,
             content: editorContent,
-            image_url: editorImageUrl,
+            image_url: editorImageUrl.trim(),
             embedding: vector,
           })
           .eq("id", editingPost.id);
@@ -138,7 +138,7 @@ export default function DashboardClient({
           .insert({
             title: editorTitle,
             content: editorContent,
-            image_url: editorImageUrl,
+            image_url: editorImageUrl.trim(),
             embedding: vector,
             user_id: user.id,
           })

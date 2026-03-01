@@ -3,35 +3,27 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import type { BlogPost } from "@/lib/blog-data";
 import { formatDate } from "@/lib/date";
 
 interface BlogCardProps {
   post: BlogPost;
-  index: number;
+  priority?: boolean;
 }
 
-export function BlogCard({ post, index }: BlogCardProps) {
+export function BlogCard({ post, priority = false }: BlogCardProps) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      <Link
-        href={`/blog/${post.id}`}
-        className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80 hover:shadow-lg hover:shadow-primary/5"
-      >
-        <div className="relative aspect-[16/10] overflow-hidden">
+    <article>
+      <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 hover:border-primary/30 hover:bg-card/80 hover:shadow-lg hover:shadow-primary/5">
+        <div className="relative aspect-[16/10] overflow-hidden bg-muted will-change-transform">
           <Image
             src={post.image_url}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transform-gpu"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
         </div>
         <div className="flex flex-1 flex-col p-5">
           <h2 className="text-balance text-lg font-semibold leading-tight text-foreground transition-colors group-hover:text-primary">
@@ -63,18 +55,24 @@ export function BlogCard({ post, index }: BlogCardProps) {
                 </span>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="gap-1 text-xs text-primary hover:text-primary"
+            <Link
+              href={`/blog/${post.id}`}
+              className="flex p-4 items-center justify-center gap-1 text-xs text-primary hover:text-primary"
               tabIndex={-1}
             >
-              Read More
-              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-            </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 text-xs text-primary hover:text-primary"
+                tabIndex={-1}
+              >
+                Read More
+                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+              </Button>
+            </Link>
           </div>
         </div>
-      </Link>
-    </motion.article>
+      </div>
+    </article>
   );
 }

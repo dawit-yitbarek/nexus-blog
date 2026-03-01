@@ -129,7 +129,7 @@ export default function HomeClient({ initialPosts, error }: HomeClientProps) {
           >
             {(searchResults.length > 0 ? searchResults : posts).map(
               (post, index) => (
-                <BlogCard key={post.id} post={post} index={index} />
+                <BlogCard key={post.id} post={post} priority={index < 3} />
               ),
             )}
           </div>
