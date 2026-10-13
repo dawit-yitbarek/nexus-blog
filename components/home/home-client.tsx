@@ -25,6 +25,7 @@ export default function HomeClient({ initialPosts, error }: HomeClientProps) {
   const [searchResults, setSearchResults] = useState<BlogPost[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const supabase = createClient();
+  const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL;
 
   const fetchPosts = useCallback(async () => {
     setState("loading");
@@ -144,8 +145,8 @@ export default function HomeClient({ initialPosts, error }: HomeClientProps) {
             <span className="text-sm font-semibold text-foreground">Nexus</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Built for the future. Powered by ideas. <br/>
-            <span>Developed by{" "}<a className="text-primary hover:underline" href="https://daviddeveloper.site">Dawit</a></span>
+            Built for the future. Powered by ideas. <br />
+            {portfolioUrl && <span>Developed by{" "}<a className="text-primary hover:underline" href={portfolioUrl}>Dawit</a></span>}
           </p>
         </div>
       </footer>
