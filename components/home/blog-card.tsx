@@ -14,7 +14,7 @@ interface BlogCardProps {
 export function BlogCard({ post, priority = false }: BlogCardProps) {
   return (
     <article>
-      <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 hover:border-primary/30 hover:bg-card/80 hover:shadow-lg hover:shadow-primary/5">
+      <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/40 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card/80 hover:shadow-lg hover:shadow-primary/5">
         <div className="relative aspect-[16/10] overflow-hidden bg-muted will-change-transform">
           <Image
             src={post.image_url}
