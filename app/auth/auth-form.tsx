@@ -32,6 +32,7 @@ export default function AuthPage() {
 
   const supabase = createClient();
   const router = useRouter();
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +45,7 @@ export default function AuthPage() {
           email: email.trim(),
           password: password.trim(),
           options: {
+            emailRedirectTo: appUrl,
             data: {
               full_name: name.trim(),
               bio: bio.trim(),
