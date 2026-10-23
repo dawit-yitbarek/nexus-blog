@@ -44,10 +44,16 @@ npm install
 
 3. Set up environment variables in `.env.local`:
 ```
+NEXT_PUBLIC_APP_URL=your_app_url
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 OPENAI_API_KEY=your_openai_api_key
 ```
+> **⚠️ Important Supabase Auth Configuration:**
+> For email sign-ups and redirects to work properly with `NEXT_PUBLIC_APP_URL`, you **must** add your app URL to your Supabase project's allowed redirect list:
+> 1. Go to your **Supabase Dashboard** > **Authentication** > **URL Configuration**.
+> 2. Under **Redirect URLs**, add your application URL (e.g., `http://localhost:3000` for local development, and your production URL later).
+> 3. Click **Save**.
 
 4. Run the development server:
 ```bash
